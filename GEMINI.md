@@ -6,8 +6,8 @@
 
 This system prompt defines the guidelines for Gemini CLI to effectively support the user's algorithm learning process. Gemini will perform the following core tasks based on user requests:
 
-1.  **Automated Solution File Generation**: Create empty solution files with a standardized naming convention based on the specified platform, problem number, and language.
-2.  **Automated Problem Analysis and `.md` File Creation**: Analyze the code files for a given problem and **autonomously generate a comprehensive `.md` file** in the format of a learning note, filling in all required analytical details without further prompting.
+1.  **Automated Solution File Generation**: Create an empty solution file with a standardized naming convention based on the specified platform, problem number, and language, then **automatically open the newly created empty file in Visual Studio Code (VS Code)**.
+2.  **Automated Problem Analysis and `.md` File Creation**: Analyze the code files for a given problem and autonomously generate a comprehensive `.md` file in the format of a learning note, filling in all required analytical details without further prompting. **After generation, automatically open this `.md` file in Visual Studio Code (VS Code)**.
 
 ---
 
@@ -29,16 +29,19 @@ Currently, the following platforms are supported and can be flexibly extended as
 - **Programmers**
 - **SWEA**
 
-### 3. File Path and Naming Convention
+### 3. File Path, Naming Convention, and VS Code Opening
 
-The generated file's path and name will follow the `algorithms/<platform>/<problem_number>/<platform>_<problem_number>.<language_extension>` rule.
+The generated file's path and name will follow the `algorithms/<platform>/<problem_number>/<platform>_<problem_number>.<language_extension>` rule. **The created file must be empty.** Immediately after file creation, Gemini must execute a command to open this file in Visual Studio Code.
 
 - **Base Directory**: All solution files will be stored under the `algorithms/` directory in the root path.
 - **Platform Directory**: A subdirectory will be created for each platform in the format `algorithms/<platform>/` (e.g., `algorithms/swea/`).
 - **Problem Number Directory**: A subdirectory will be created for each problem number under its respective platform directory, in the format `/<problem_number>/` (e.g., `algorithms/swea/6254/`).
 - **File Name**: Files will be named in the `<platform>_<problem_number>.<language_extension>` format.
+- **File Content**: The generated file **must be completely empty**. No boilerplate code or comments should be added.
+- **VS Code Opening**: After creation, the command `code <file_path>` should be executed to open it in VS Code.
   - **Example**: For the request "SWEA 6254 Python start":
-    `algorithms/swea/6254/swea_6254.py` will be created.
+    1.  `algorithms/swea/6254/swea_6254.py` will be created as an empty file.
+    2.  **Subsequently, the command `code algorithms/swea/6254/swea_6254.py` should be executed to open it in VS Code.**
 
 ---
 
@@ -61,9 +64,9 @@ Upon receiving a request, Gemini will perform the following steps **autonomously
 2.  **Retrieve Files**: Retrieve all solution code files (e.g., `.py`, `.java`, `.cpp`, etc.) within that directory.
 3.  **Perform In-depth Code Analysis**: Conduct a thorough and in-depth analysis of each retrieved code file. **From this analysis, Gemini will directly extract and synthesize all the necessary content** for the `.md` file, including the algorithms used, detailed solution explanation, time complexity, space complexity, strengths, and areas for improvement.
 
-### 3. Contents for the `.md` File
+### 3. Contents for the `.md` File and VS Code Opening
 
-The generated `.md` file will be named `<platform>_<problem_number>_problem_solution.md` and **must be fully populated by Gemini's analysis** with the following content:
+The generated `.md` file will be named `<platform>_<problem_number>_problem_solution.md` and **must be fully populated by Gemini's analysis** with the following content. **After generation, Gemini must execute a command to open this `.md` file in Visual Studio Code.**
 
 - **Platform**: The name of the online judge platform where the problem originated.
 - **Problem Number**: The unique identifier for the problem.
@@ -73,6 +76,10 @@ The generated `.md` file will be named `<platform>_<problem_number>_problem_solu
 - **Space Complexity**: **[Extracted from Code Analysis]** State the space complexity using Big O notation (e.g., `O(N)`, `O(1)`). Explain the reasoning.
 - **Code Analysis - Strengths**: **[Extracted from Code Analysis]** Specifically mention aspects of the written code that can be positively evaluated, such as efficiency, readability, conciseness of logic, effective handling of edge cases, or adherence to best practices.
 - **Code Analysis - Areas for Improvement/Regrets**: **[Extracted from Code Analysis]** Clearly identify inefficiencies, potential bugs, more optimized approaches, or missed opportunities, and suggest concrete improvements. This section should also reflect on any challenges faced during problem-solving or alternative solutions considered.
+- **VS Code Opening**: After `.md` file generation, the command `code <md_file_path>` should be executed to open it in VS Code.
+  - **Example**: For the request "SWEA 6254 summarize":
+    1.  `algorithms/swea/6254/swea_6254_problem_solution.md` will be generated with the analysis.
+    2.  **Subsequently, the command `code algorithms/swea/6254/swea_6254_problem_solution.md` should be executed to open it in VS Code.**
 
 ### 4. Multi-language Solution Support
 
@@ -84,7 +91,7 @@ The generated `.md` file will be named `<platform>_<problem_number>_problem_solu
 ## IV. Response Principles
 
 - Clearly understand user requests; ask for clarification only if ambiguity prevents core task execution (e.g., unknown platform/problem number).
-- Notify the user clearly upon successful task completion, explicitly stating that the analysis file has been generated with all details.
+- Notify the user clearly upon successful task completion, explicitly stating that the file(s) have been generated and opened in VS Code.
 - In case of errors (e.g., file not found, permission denied), explain the cause and suggest possible solutions.
 - Use professional, clear, and concise language.
 
