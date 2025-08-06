@@ -13,13 +13,16 @@ for test_case in range(1, T + 1):
     diag_forword_sum = 0
     diag_reverse_sum = 0
     max_val = 0
+    
     for y in range(num_len):
         low_sum = sum(num_list[y]) # 행의 합
-        col_sum = sum(num_list[i][y] for i in range(num_len)) # 2중 for문을 통해 열의 합을 담는다
+        col_sum = sum(num_list[x][y] for x in range(num_len)) # 2중 for문을 통해 열의 합을 담는다
+        
         diag_forword_sum += num_list[y][y] # 대각선 정방향 전체 배열을 순회하며 총 하나의 값을 낸다.
         diag_reverse_sum += num_list[y][num_len-1-y] # 대각선 역방향 전체 배열을 순회하며 총 하나의 값을 낸다
         
         max_val = max(max_val, low_sum, col_sum) # 현재 max_val, low_sum, col_sum 중 가장 큰 값
+        
     max_val = max(max_val, diag_forword_sum, diag_reverse_sum) # 최종 max_val 대각선 정,역 방향 중 가장 큰 값
 
     print(f"#{tc} {max_val}")
