@@ -1,4 +1,5 @@
 # SWEA 1979 문제 풀이
+
 import sys
 from pathlib import Path
 
@@ -25,34 +26,39 @@ T = int(sys.stdin.readline().strip("\n"))
 def check_row_col(word_map, col, row): # 이전 인덱스 조회
     check_col = True
     check_row = True
-
-    try:
-        if word_map[col-1][row] == 1:
-            check_col = False
-    except:
-        pass
-    try:
-        if word_map[col][row-1] == 1:
-            check_row = False
-    except:
-        pass
+    if col - 1 >= 0:
+        try:
+            if word_map[col-1][row] == 1:
+                check_col = False
+        except:
+            pass
+    if row - 1 >= 0:
+        try:
+            if word_map[col][row-1] == 1:
+                check_row = False
+        except:
+            pass
 
     return [check_col, check_row]
 
 def check_word_len(word_map, word, col, row, hor_ver): # 칸수 측정
     size_count = 1
     if hor_ver == 0: # 수직
-        for delta in range(1, len(word_map)-row):
-            if word_map[col][row+delta] == 1:
+        for delta in range(1, len(word_map)-col):
+            if word_map[col+delta][row] == 1:
                 size_count += 1
+            else:
+                return size_count
             if size_count > word:
                 size_count = 0
                 return size_count
         return size_count
     elif hor_ver == 1: # 수평
-        for delta in range(1, len(word_map)-col):
-            if word_map[col+delta][row] == 1:
+        for delta in range(1, len(word_map)-row):
+            if word_map[col][row+delta] == 1:
                 size_count += 1
+            else:
+                return size_count
             if size_count > word:
                 size_count = 0
                 return size_count
@@ -62,11 +68,13 @@ def check_word_len(word_map, word, col, row, hor_ver): # 칸수 측정
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
     size, word = map(int, sys.stdin.readline().strip("\n").split())
+    # size, word = map(int, input().split())
     # print(size, word)
 
     word_map = []
     for _ in range(size):
         word_map.append(list(map(int, sys.stdin.readline().strip("\n").split())))
+        # word_map.append(list(map(int, input().split())))
     # print(word_map)
 
     word_count = 0
