@@ -1,16 +1,16 @@
 # SWEA 4831 문제 풀이
 
-import sys
-from pathlib import Path
+# import sys
+# from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-file_path = BASE_DIR / 'sample_input.txt'
+# BASE_DIR = Path(__file__).resolve().parent
+# file_path = BASE_DIR / 'sample_input.txt'
 
-sys.stdin = file_path.open('r', encoding='utf-8')
+# sys.stdin = file_path.open('r', encoding='utf-8')
 
-num = sys.stdin.readline().strip("\n")
-print(num)
-T = int(num)
+# num = sys.stdin.readline().strip("\n")
+# print(num)
+# T = int(num)
 
 class bus:
     def __init__(self, current_place: int, charge_val: int, last_stop):
@@ -28,13 +28,13 @@ class bus:
     
     pass
 
-# T = int(input())
+T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
-    charge_val, last_stop, charge_stop = map(int,sys.stdin.readline().strip("\n").split())
-    charge_stop_list = list(map(int,sys.stdin.readline().strip("\n").split()))
-    # charge_val, last_stop, charge_stop = map(int, input().split())
-    # charge_stop_list = list(map(int, input().split()))
+    # charge_val, last_stop, charge_stop = map(int,sys.stdin.readline().strip("\n").split())
+    # charge_stop_list = list(map(int,sys.stdin.readline().strip("\n").split()))
+    charge_val, last_stop, charge_stop = map(int, input().split())
+    charge_stop_list = list(map(int, input().split()))
     road = [0] * (last_stop+1)
     
     for charge_road in charge_stop_list:
