@@ -1,13 +1,13 @@
 # SWEA 1979 문제 풀이
 
-import sys
-from pathlib import Path
+# import sys
+# from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-file_path = BASE_DIR / 'input.txt'
+# BASE_DIR = Path(__file__).resolve().parent
+# file_path = BASE_DIR / 'input.txt'
 
-sys.stdin = file_path.open('r', encoding='utf-8')
-T = int(sys.stdin.readline().strip("\n"))
+# sys.stdin = file_path.open('r', encoding='utf-8')
+# T = int(sys.stdin.readline().strip("\n"))
 
 """
 리스트 전체 순환
@@ -27,17 +27,11 @@ def check_row_col(word_map, col, row): # 이전 인덱스 조회
     check_col = True
     check_row = True
     if col - 1 >= 0:
-        try:
-            if word_map[col-1][row] == 1:
-                check_col = False
-        except:
-            pass
+        if word_map[col-1][row] == 1:
+            check_col = False
     if row - 1 >= 0:
-        try:
-            if word_map[col][row-1] == 1:
-                check_row = False
-        except:
-            pass
+        if word_map[col][row-1] == 1:
+            check_row = False
 
     return [check_col, check_row]
 
@@ -64,17 +58,17 @@ def check_word_len(word_map, word, col, row, hor_ver): # 칸수 측정
                 return size_count
         return size_count
 
-# T = int(input())
+T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
-    size, word = map(int, sys.stdin.readline().strip("\n").split())
-    # size, word = map(int, input().split())
+    # size, word = map(int, sys.stdin.readline().strip("\n").split())
+    size, word = map(int, input().split())
     # print(size, word)
 
     word_map = []
     for _ in range(size):
-        word_map.append(list(map(int, sys.stdin.readline().strip("\n").split())))
-        # word_map.append(list(map(int, input().split())))
+        # word_map.append(list(map(int, sys.stdin.readline().strip("\n").split())))
+        word_map.append(list(map(int, input().split())))
     # print(word_map)
 
     word_count = 0
