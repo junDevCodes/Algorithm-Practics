@@ -13,25 +13,25 @@ T = int(sys.stdin.readline().strip("\n"))
 for test_case in range(1, T + 1):
 
     col, row = map(int, sys.stdin.readline().strip("\n").split())
+    # col, row = map(int, input().split())
     # print(col, row)
 
     num_list = []
     for _ in range(col):
         num_list.append(list(map(int, sys.stdin.readline().strip("\n").split())))
+        # num_list.append(list(map(int, input().split())))
     # print(num_list)
 
+    delta_list = [-1, 1]
     max_val = 0
     for y in range(col):
         for x in range(row):
             cal_val = num_list[y][x]
-            if y - 1 >= 0:
-                cal_val += num_list[y-1][x]
-            if x - 1 >= 0:
-                cal_val += num_list[y][x-1]
-            if y + 1 < col:
-                cal_val += num_list[y+1][x]
-            if x + 1 < col:
-                cal_val += num_list[y][x+1]
+            for delta in delta_list:
+                if 0 <= y+delta < col:
+                    cal_val += num_list[y+delta][x]
+                if 0 <= x+delta < row:
+                    cal_val += num_list[y][x+delta]
             max_val = max(max_val, cal_val)
 
     print(f"#{test_case} {max_val}")
