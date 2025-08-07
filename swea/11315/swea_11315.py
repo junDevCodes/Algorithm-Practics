@@ -16,12 +16,14 @@ o 발견 시 4가지 케이스 ㅡ, ㅣ, /, \ 에 대해서 5칸을 조회
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
     size = int(sys.stdin.readline().strip("\n"))
-    print(size)
+    # size = int(input())
+    # print(size)
 
     map_list = []
     for _ in range(size):
         map_list.append(list(sys.stdin.readline().strip("\n")))
-    print(map_list)
+        # map_list.append(list(input()))
+    # print(map_list)
 
     result = "NO"
     for col in range(size):
