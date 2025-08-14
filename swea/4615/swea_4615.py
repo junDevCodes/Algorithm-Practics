@@ -1,12 +1,12 @@
 # SWEA 4615 문제 풀이
-# import sys
-# from pathlib import Path
-#
-# BASE_DIR = Path(__file__).resolve().parent
-# file_path = BASE_DIR / 'sample_input.txt'
-# sys.stdin = file_path.open('r', encoding='utf-8')
-#
-# T = int(sys.stdin.readline().strip("\n"))
+import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+file_path = BASE_DIR / 'sample_input.txt'
+sys.stdin = file_path.open('r', encoding='utf-8')
+
+T = int(sys.stdin.readline().strip("\n"))
 """
 [문제 설명]
 오셀로 게임 규칙 :
@@ -62,7 +62,7 @@ ex) BWWWB인 경우 닫히게 되면 종료 전부 B로 반환하며 역방향�
 [예시 출력]
 #1 0 16
 """
-T = int(input())  # 표준 입력 사용 시
+# T = int(input())  # 표준 입력 사용 시
 # 여러 개의 테스트 케이스를 처리합니다.
 delta_list = [(-1, 0), (1, 0), (0, -1), (0, 1), (1, 1), (-1, -1), (-1, 1), (1, -1)]
 color_stone = {
@@ -109,8 +109,8 @@ def check_delta(othello_map, col, row):
 
 
 for test_case in range(1, T + 1):
-    # map_size, total_turn = map(int, sys.stdin.readline().strip("\n").split())
-    map_size, total_turn = map(int, input().split())
+    map_size, total_turn = map(int, sys.stdin.readline().strip("\n").split())
+    # map_size, total_turn = map(int, input().split())
     # print(map_size, total_turn)
 
     othello_map = [([0] * map_size) for i in range(map_size)] # map_size * map_size 의 othello_map 선언
@@ -124,8 +124,8 @@ for test_case in range(1, T + 1):
     # print(othello_map)
 
     for turn in range(total_turn):
-        # turn_x, turn_y, turn_color = map(int, sys.stdin.readline().strip("\n").split()) # 돌 놓기 입력 받기
-        turn_x, turn_y, turn_color = map(int, input().split()) # 돌 놓기 입력 받기
+        turn_x, turn_y, turn_color = map(int, sys.stdin.readline().strip("\n").split()) # 돌 놓기 입력 받기
+        # turn_x, turn_y, turn_color = map(int, input().split()) # 돌 놓기 입력 받기
 
         othello_map[turn_y-1][turn_x-1] = color_stone[turn_color] # 돌 놓기
 
