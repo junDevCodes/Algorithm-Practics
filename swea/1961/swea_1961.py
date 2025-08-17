@@ -1,22 +1,23 @@
 # SWEA 1961 문제 풀이
-import sys
-from pathlib import Path
+# import sys
+# from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-file_path = BASE_DIR / 'input.txt'
+# BASE_DIR = Path(__file__).resolve().parent
+# file_path = BASE_DIR / 'input.txt'
 
-sys.stdin = file_path.open('r', encoding='utf-8')
-T = int(sys.stdin.readline().strip("\n"))
+# sys.stdin = file_path.open('r', encoding='utf-8')
+# T = int(sys.stdin.readline().strip("\n"))
 
-# T = int(input())
+T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
-    size = int(sys.stdin.readline().strip("\n"))
+    # size = int(sys.stdin.readline().strip("\n"))
+    size = int(input())
     # print(size)
 
     num_list = []
     for _ in range(size):
-        num_list.append(list(map(int, sys.stdin.readline().strip("\n").split())))
+        num_list.append(list(map(int, input().split())))
     # print(num_list)
 
     rotate_90_num_list = list(zip(*reversed(num_list)))
