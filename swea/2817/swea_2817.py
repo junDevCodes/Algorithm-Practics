@@ -1,5 +1,4 @@
 # SWEA 2817 문제 풀이
-import itertools
 # import sys
 # from pathlib import Path
 #
@@ -35,9 +34,31 @@ for test_case in range(1, T + 1):
     num_list = list(map(int, input().split()))
 
     count = 0
-    for idx in range(1, num + 1):
-        result = list(itertools.combinations(num_list, idx))
-        for cal in result:
-            if sum(cal) == target:
+    num_list.sort()
+
+    def solve(idx, current_sum):
+        global count
+
+        # **가지치기(Pruning):** 현재 합이 목표 합보다 크면
+        # 더 이상 탐색할 필요가 없으므로 즉시 함수를 종료합니다.
+        if current_sum > target:
+            return
+
+        # **종료 조건:** 모든 숫자를 다 확인했을 때
+        if idx == num:
+            # 최종 합이 목표 합과 같으면 카운트를 1 증가시킵니다.
+            if current_sum == target:
                 count += 1
+            return
+
+        # 1. 현재 숫자를 합에 포함하는 경우
+        solve(idx + 1, current_sum + num_list[idx])
+
+        # 2. 현재 숫자를 합에 포함하지 않는 경우
+        solve(idx + 1, current_sum)
+
+
+    # 0번 인덱스부터 시작하며, 초기 합은 0입니다.
+    solve(0, 0)
+
     print(f"#{test_case} {count}")
