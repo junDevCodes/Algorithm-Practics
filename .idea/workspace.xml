@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ebd9744-51b7-4f1e-b224-5bfdad5d41f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/swea/25028/input_internal.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swea/25028/output_internal.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swea/25028/sample_input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swea/25028/sample_output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swea/1979/IM_test_1979.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/1979/IM_test_1979.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swea/4615/swea_4615.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/4615/swea_4615.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +32,7 @@
       <recent name="C:\Users\SSAFY\Desktop\Algorithm-Practics\swea\24991" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.swea_25028">
+  <component name="RunManager" selected="Python.boj_14502">
     <configuration name="IM_test_1979" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -60,7 +54,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="swea_24991" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="boj_14502" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -68,11 +62,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swea/24991" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/boj/14502" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swea/24991/swea_24991.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/boj/14502/boj_14502.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.boj_14502" />
         <item itemvalue="Python.swea_25028" />
         <item itemvalue="Python.swea_25026" />
         <item itemvalue="Python.IM_test_1979" />
         <item itemvalue="Python.swea_4130" />
-        <item itemvalue="Python.swea_24991" />
       </list>
     </recent_temporary>
   </component>
