@@ -118,12 +118,38 @@ class SinglyLinkedList:
             position += 1
         return -1
 
+
+# 순열 구현 - 반복문
+for i in range(1, 4):
+    for j in range(1, 4):
+        if j != i:
+            for k in range(1, 4):
+                if k != i  and k != j:
+                    print(i, j, k)
+
+print("----------------------------------------")
+
+# 순열 구현 - 재귀
+def perm(selected, remain):
+    if not remain:
+        print(selected)
+    else:
+        for i in range(len(remain)):
+            select_i = remain[i]
+            remain_list = remain[:i] + remain[i+1:]
+            perm(selected + [select_i], remain_list)
+
+perm([], [1, 2, 3])
+
+print("----------------------------------------")
+
 # 조합 구현 - 반복문
 for i in range(1, 5):
     for j in range(i+1, 5):
         for k in range(j+1, 5):
             print(i, j, k)
 
+print("----------------------------------------")
 # 조합 구현 - 재귀
 
 def comb(arr, n):
@@ -143,3 +169,61 @@ def comb(arr, n):
     return result
 
 print(comb([1, 2, 3, 4], 3))
+
+print("----------------------------------------")
+# 부분 집합 구현 - 반복문
+
+selected = [0] * 3
+for i in range(2):
+    selected[0] = i
+    for j in range(2):
+        selected[1] = j
+        for m in range(2):
+            selected[2] = m
+            subset = []
+            for n in range(3):
+                if selected[n] == 1:
+                    subset.append((n + 1))
+            print(subset)
+
+print("----------------------------------------")
+
+# 부분 집합 구현 - 재귀
+
+def generate_subset(depth, included):
+    if depth == len(input_list):
+        cnt_subset = [input_list[i] for i in range(len(input_list)) if included[i]]
+        subsets.append(cnt_subset)
+        return
+
+    included[depth] = False
+    generate_subset(depth + 1, included)
+
+    included[depth] = True
+    generate_subset(depth + 1, included)
+
+input_list = [1, 2, 3]
+subsets = []
+init_included = [False] * len(input_list)
+generate_subset(0, init_included)
+print(subsets)
+
+print("----------------------------------------")
+
+# 부분 집합 구현 - 바이너리 카운팅
+
+arr = [1, 2, 3]
+n = len(arr)
+subset_cnt = 2 ** n
+
+subsets = []
+for i in range(subset_cnt):
+    subset = []
+    for j in range(n):
+        if i & (1 << j):
+            subset.append(arr[j])
+    subsets.append(subset)
+
+print(subsets)
+
+print("----------------------------------------")
