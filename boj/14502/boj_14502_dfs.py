@@ -51,28 +51,27 @@ import copy
 
 
 def bfs(lab_map, virus_loc):
-
-    max_row, max_col = len(lab_map), len(lab_map[0])
     queue = deque(virus_loc)
-    delta_list = [(-1, 0), (1, 0), (0, 1), (0, -1)]
+    delta_list = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    map_row, map_col = len(lab_map), len(lab_map[0])
 
     while queue:
         current_row, current_col = queue.popleft()
 
-        for delta_row, delta_col in delta_list:
-            next_row, next_col = current_row + delta_row, current_col + delta_col
+        for d_row, d_col in delta_list:
+            next_row, next_col = current_row + d_row, current_col + d_col
 
-            if 0 <= next_row < max_row and 0 <= next_col < max_col and lab_map[next_row][next_col] == 0:
+            if 0<=next_row<map_row and 0<=next_col<map_col and lab_map[next_row][next_col] == 0:
                 lab_map[next_row][next_col] = 2
                 queue.append((next_row, next_col))
 
-    safe_area_count = 0
-    for row in range(max_row):
-        for col in range(max_col):
+    max_safe_area = 0
+    for row in range(map_row):
+        for col in range(map_col):
             if lab_map[row][col] == 0:
-                safe_area_count += 1
+                max_safe_area += 1
 
-    return safe_area_count
+    return max_safe_area
 
 
 def dfs(lab_map, safe_loc, virus_loc, start_idx, count, max_safe_area):
@@ -84,26 +83,26 @@ def dfs(lab_map, safe_loc, virus_loc, start_idx, count, max_safe_area):
 
     current_max = max_safe_area
 
-    for i in range(start_idx, len(safe_loc)):
-        row, col = safe_loc[i]
+    for idx in range(start_idx, len(safe_loc)):
+        map_row, map_col = safe_loc[idx]
 
-        lab_map[row][col] = 1
+        lab_map[map_row][map_col] = 1
 
-        current_max = dfs(lab_map, safe_loc, virus_loc, i + 1, count + 1, current_max)
+        current_max = dfs(lab_map, safe_loc, virus_loc, idx + 1, count + 1, current_max)
 
-        lab_map[row][col] = 0
+        lab_map[map_row][map_col] = 0
 
     return current_max
 
 
 def solve():
-    # map_row, map_col = map(int, sys.stdin.readline().strip().split())
+
     map_row, map_col = map(int, input().split())
-    # lab_map = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(map_row)]
     lab_map = [list(map(int, input().split())) for _ in range(map_row)]
 
     safe_loc = []
     virus_loc = []
+
     for row in range(map_row):
         for col in range(map_col):
             if lab_map[row][col] == 0:
@@ -113,8 +112,6 @@ def solve():
 
     result = dfs(lab_map, safe_loc, virus_loc, 0, 0, 0)
     print(result)
-
-    return 0
-
+    pass
 
 solve()
