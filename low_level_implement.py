@@ -24,6 +24,7 @@ class Stack:
         self.top -= 1
         return item
 
+
 class Queue:
     def __init__(self, capacity=10):
         self.capacity = capacity
@@ -51,10 +52,12 @@ class Queue:
         self.items[self.front] = None
         return item
 
+
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+
 
 class SinglyLinkedList:
     def __init__(self):
@@ -129,6 +132,7 @@ for i in range(1, 4):
 
 print("----------------------------------------")
 
+
 # 순열 구현 - 재귀
 def perm(selected, remain):
     if not remain:
@@ -138,6 +142,7 @@ def perm(selected, remain):
             select_i = remain[i]
             remain_list = remain[:i] + remain[i+1:]
             perm(selected + [select_i], remain_list)
+
 
 perm([], [1, 2, 3])
 
@@ -149,8 +154,9 @@ for i in range(1, 5):
         for k in range(j+1, 5):
             print(i, j, k)
 
-print("----------------------------------------")
+print("조합 재귀----------------------------------------")
 # 조합 구현 - 재귀
+
 
 def comb(arr, n):
     result = []
@@ -161,12 +167,13 @@ def comb(arr, n):
         elem = arr[i]
         
         for rest in comb(arr[i + 1:], n - 1): # 조합
-        # for rest in comb(arr[:i] + arr[i+1:], n - 1) # 순열
+        # for rest in comb(arr[:i] + arr[i+1:], n - 1): # 순열
         # for rest in comb(arr, n - 1): # 중복 순열
         # for rest in comb(arr[i:], n - 1): # 중복 조합
             result.append([elem] + rest)
 
     return result
+
 
 print(comb([1, 2, 3, 4], 3))
 
@@ -188,8 +195,8 @@ for i in range(2):
 
 print("----------------------------------------")
 
-# 부분 집합 구현 - 재귀
 
+# 부분 집합 구현 - 재귀
 def generate_subset(depth, included):
     if depth == len(input_list):
         cnt_subset = [input_list[i] for i in range(len(input_list)) if included[i]]
@@ -201,6 +208,7 @@ def generate_subset(depth, included):
 
     included[depth] = True
     generate_subset(depth + 1, included)
+
 
 input_list = [1, 2, 3]
 subsets = []
