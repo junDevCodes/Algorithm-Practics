@@ -32,8 +32,9 @@ d_list = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 
 def dfs(c_row, c_col, is_dig, road):
-    global max_road, map_info
+    global max_road
 
+    max_road = max(max_road, road + 1)
     visited[c_row][c_col] = True
 
     for d_row, d_col in d_list:
@@ -45,11 +46,9 @@ def dfs(c_row, c_col, is_dig, road):
 
             if n_height < c_height:
                 dfs(n_row, n_col, is_dig, road+1)
-                max_road = max(max_road, road+1)
             elif not is_dig and n_height-dig_once < c_height:
                 map_info[n_row][n_col] = c_height-1
                 dfs(n_row, n_col, True, road+1)
-                max_road = max(max_road, road+1)
                 map_info[n_row][n_col] = n_height
 
     visited[c_row][c_col] = False
