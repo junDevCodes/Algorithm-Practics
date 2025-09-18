@@ -1,11 +1,11 @@
 # BOJ 17070 문제 풀이
-import sys
-from pathlib import Path
-
-# 파일 입력 설정 (로컬 테스트용)
-BASE_DIR = Path(__file__).resolve().parent
-file_path = BASE_DIR / 'sample_input.txt'
-sys.stdin = file_path.open('r', encoding='utf-8')
+# import sys
+# from pathlib import Path
+#
+# # 파일 입력 설정 (로컬 테스트용)
+# BASE_DIR = Path(__file__).resolve().parent
+# file_path = BASE_DIR / 'sample_input.txt'
+# sys.stdin = file_path.open('r', encoding='utf-8')
 
 """
 [문제 설명]
@@ -41,70 +41,63 @@ DFS
 1
 """
 
+memo = {}
+map_info = []
+map_size = 0
 
-count = 0
+def dfs_memo(e_row, e_col, direction):
+    global map_size, map_info
 
-def dfs(start_pipe, end_pipe, target_idx, map_info):
-    global count
+    if (e_row, e_col, direction) in memo:
+        return memo[(e_row, e_col, direction)]
 
-    s_row, s_col = start_pipe[0], start_pipe[1]
-    e_row, e_col = end_pipe[0], end_pipe[1]
+    if e_row == map_size-1 and e_col == map_size-1:
+        return 1
 
-    if (e_row, e_col) == (target_idx, target_idx):
-        count += 1
-        return
+    count = 0
 
-    n_s_pipe = (e_row, e_col)
+    # 가로 이동 (현재 가로 또는 대각선 상태에서 가능)
+    if direction == 0 or direction == 2:
+        if e_col + 1 < map_size and not map_info[e_row][e_col + 1]:
+            count += dfs_memo(e_row, e_col + 1, 0)
 
-    if s_row == e_row:  # 가로 상태
-        if e_col + 1 <= target_idx and not map_info[e_row][e_col+1]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row, e_col+1), target_idx, map_info) # 가로로 한번 더
+    # 세로 이동 (현재 세로 또는 대각선 상태에서 가능)
+    if direction == 1 or direction == 2:
+        if e_row + 1 < map_size and not map_info[e_row + 1][e_col]:
+            count += dfs_memo(e_row + 1, e_col, 1)
 
-        if e_col + 1 <= target_idx and e_row + 1 <= target_idx \
-            and not map_info[e_row][e_col+1] \
-            and not map_info[e_row+1][e_col] \
-            and not map_info[e_row+1][e_col+1]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row+1, e_col+1), target_idx, map_info) # 대각으로 한번 더
+    # 대각선 이동 (모든 상태에서 가능)
+    if e_col + 1 < map_size and e_row + 1 < map_size and \
+            not map_info[e_row][e_col + 1] and \
+            not map_info[e_row + 1][e_col] and \
+            not map_info[e_row + 1][e_col + 1]:
+        count += dfs_memo(e_row + 1, e_col + 1, 2)
 
-    elif s_col == e_col:  # 세로 상태
-        if e_row + 1 <= target_idx and not map_info[e_row+1][e_col]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row+1, e_col), target_idx, map_info) # 세로로 한번 더
-
-        if e_col + 1 <= target_idx and e_row + 1 <= target_idx \
-            and not map_info[e_row][e_col+1] \
-            and not map_info[e_row+1][e_col] \
-            and not map_info[e_row+1][e_col+1]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row+1, e_col+1), target_idx, map_info) # 대각으로 한번 더
-
-    else:  # 대각 상태
-        if e_col + 1 <= target_idx and not map_info[e_row][e_col+1]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row, e_col+1), target_idx, map_info) # 가로로 한번 더
-
-        if e_row + 1 <= target_idx and not map_info[e_row+1][e_col]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row+1, e_col), target_idx, map_info) # 세로로 한번 더
-
-        if e_col + 1 <= target_idx and e_row + 1 <= target_idx \
-            and not map_info[e_row][e_col+1] \
-            and not map_info[e_row+1][e_col] \
-            and not map_info[e_row+1][e_col+1]: # 맵 밖으로 나가지 않고 벽이 아니라면
-            dfs(n_s_pipe, (e_row+1, e_col+1), target_idx, map_info) # 대각으로 한번 더
-        
+    memo[(e_row, e_col, direction)] = count
+    return count
 
 
 def solve():
-    global count
-    T = int(sys.stdin.readline().strip())
+    global map_size, map_info
+    # T = int(sys.stdin.readline().strip())
 
-    for tc in range(1, T + 1):
-        count = 0
-        map_size = int(sys.stdin.readline().strip())
-        map_info = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(map_size)]
+    # for tc in range(1, T + 1):
+    count = 0
+    # map_size = int(sys.stdin.readline().strip())
+    # map_info = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(map_size)]
+    map_size = int(input())
+    map_info = [list(map(int, input().split())) for _ in range(map_size)]
 
-        start_pipe = (0, 0)
-        end_pipe = (0, 1)
+    if map_info[map_size-1][map_size-1] == 1:
+        print(0)
+        return
 
-        dfs(start_pipe, end_pipe, map_size-1, map_info)
+        # 시작 지점 바로 오른쪽에 벽이 있다면 0 반환
+    if map_info[0][1] == 1:
+        print(0)
+        return
 
-        print(count)
+    count = dfs_memo(0, 1, 0)
+    print(count)
 
 solve()
