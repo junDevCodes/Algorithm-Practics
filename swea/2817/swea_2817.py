@@ -5,60 +5,61 @@
 # BASE_DIR = Path(__file__).resolve().parent
 # file_path = BASE_DIR / 'sample_input.txt'
 # sys.stdin = file_path.open('r', encoding='utf-8')
-#
-# T = int(sys.stdin.readline().strip("\n"))
+
 """
 [문제 설명]
-여기에 문제 요약과 요구사항을 작성하세요.
+N개의 자연수 수열 A가 주어지고
+부분 수열의 합이 K가 되는 경우의 수를 출력하시오
 
 [입력]
-- 입력 형식에 대한 설명
-- 각 줄별 입력 내용
+0. TC
+1. seq_num, sum_target
+2. seq_info
 
 [출력]
-- 출력 형식에 대한 설명
+1. 부분 수열 합의 K가 되는 경우의 수 
 
 [로직]
-- 문제 해결에 필요한 알고리즘
+dfs를 통한 완탐과 백트래킹
 
 [예시 입력]
-예시 입력 내용을 작성
+1
+4 3
+1 2 1 2
 
 [예시 출력]
-예시 출력 내용을 작성
+#1 4
+
 """
-T = int(input())  # 표준 입력 사용 시
+
+
+def dfs(start_idx, c_val):
+    global seq_num, sum_target, count
+
+    if c_val == sum_target:
+        count += 1
+        return
+
+    if c_val > sum_target:
+        return
+
+    for c_idx in range(start_idx, seq_num):
+        dfs(c_idx+1, c_val + seq_info[c_idx])
+    return 0
+
+
+# T = int(sys.stdin.readline())
+T = int(input())
+
 # 여러 개의 테스트 케이스를 처리합니다.
 for test_case in range(1, T + 1):
-    num, target = map(int, input().split())
-    num_list = list(map(int, input().split()))
+    # seq_num, sum_target = map(int, sys.stdin.readline().strip().split())
+    seq_num, sum_target = map(int, input().split())
+
+    # seq_info = list(map(int, sys.stdin.readline().strip().split()))
+    seq_info = list(map(int, input().split()))
 
     count = 0
-    num_list.sort()
-
-    def solve(idx, current_sum):
-        global count
-
-        # **가지치기(Pruning):** 현재 합이 목표 합보다 크면
-        # 더 이상 탐색할 필요가 없으므로 즉시 함수를 종료합니다.
-        if current_sum > target:
-            return
-
-        # **종료 조건:** 모든 숫자를 다 확인했을 때
-        if idx == num:
-            # 최종 합이 목표 합과 같으면 카운트를 1 증가시킵니다.
-            if current_sum == target:
-                count += 1
-            return
-
-        # 1. 현재 숫자를 합에 포함하는 경우
-        solve(idx + 1, current_sum + num_list[idx])
-
-        # 2. 현재 숫자를 합에 포함하지 않는 경우
-        solve(idx + 1, current_sum)
-
-
-    # 0번 인덱스부터 시작하며, 초기 합은 0입니다.
-    solve(0, 0)
+    dfs(0, 0)
 
     print(f"#{test_case} {count}")
