@@ -1,9 +1,8 @@
 # SWEA 1953 문제 풀이
-import sys
-from pathlib import Path
+# import sys
 
 # 로컬 테스트용 파일 입력 설정
-sys.stdin = open('sample_input.txt', 'r', encoding='utf-8')
+# sys.stdin = open('sample_input.txt', 'r', encoding='utf-8')
 
 """
 [문제 설명]
@@ -94,12 +93,14 @@ def bfs(map_info, sr, sc, R, C, L):
 
 
 def solve():
-    # T = int(input())
-    T = int(sys.stdin.readline().strip())
+    T = int(input())
+    # T = int(sys.stdin.readline().strip())
 
     for test_case in range(1, T + 1):
-        map_row, map_col, start_row, start_col, escape_time = map(int, sys.stdin.readline().strip().split())
-        map_info = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(map_row)]
+        # map_row, map_col, start_row, start_col, escape_time = map(int, sys.stdin.readline().strip().split())
+        map_row, map_col, start_row, start_col, escape_time = map(int, input().split())
+        # map_info = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(map_row)]
+        map_info = [list(map(int, input().split())) for _ in range(map_row)]
 
         result = bfs(map_info, start_row, start_col, map_row, map_col, escape_time)
 

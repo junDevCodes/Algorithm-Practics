@@ -29,6 +29,7 @@ def solve():
                     if abs(nx - cx) <= 2 and (nx, ny) not in visited:
                         queue.append((nx, ny, time + 1))
                         visited.add((nx, ny))
+
     print(-1)
     return
 

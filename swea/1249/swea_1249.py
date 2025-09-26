@@ -1,10 +1,10 @@
 # SWEA 1249 문제 풀이
-import sys
-from pathlib import Path
-
-# 로컬 테스트용 파일 입력 설정
-BASE_DIR = Path(__file__).resolve().parent
-sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
+# import sys
+# from pathlib import Path
+#
+# # 로컬 테스트용 파일 입력 설정
+# BASE_DIR = Path(__file__).resolve().parent
+# sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
 
 """
 [문제 설명]
@@ -61,16 +61,16 @@ def dijkstra():
 d_list = [(0, 1), (1, 0), (-1, 0), (0, -1)]
 
 
-T = int(sys.stdin.readline())
-# T = int(input())
+# T = int(sys.stdin.readline())
+T = int(input())
 
 for test_case in range(1, T + 1):
     # 입력
-    map_size = int(sys.stdin.readline())
-    # map_size = int(input())
+    # map_size = int(sys.stdin.readline())
+    map_size = int(input())
 
-    map_info = [list(map(int, sys.stdin.readline().strip())) for _ in range(map_size)]
-    # map_info = [list(map(int, input().split())) for _ in range(map_size)]
+    # map_info = [list(map(int, sys.stdin.readline().strip())) for _ in range(map_size)]
+    map_info = [list(map(int, input())) for _ in range(map_size)]
 
     # 로직
     result = dijkstra()
