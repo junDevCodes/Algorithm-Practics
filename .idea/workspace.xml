@@ -5,10 +5,103 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebd9744-51b7-4f1e-b224-5bfdad5d41f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/boj/17471/boj_17471.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/boj/17471/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/boj/2412/boj_2412.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/boj/2412/boj_2412_self.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/boj/2412/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1226/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1226/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1226/swea_1226_bfs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1226/swea_1226_dfs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1231/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1231/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1231/swea_1231.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1232/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1232/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1232/swea_1232.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1238/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1238/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1238/swea_1238.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1244/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1244/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1244/swea_1244.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1249/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1249/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1249/swea_1249.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1251/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1251/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1251/swea_1251.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1267/output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1267/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1267/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1267/swea_1267.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1267/swea_1267_self.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1486/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1486/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1486/swea_1486.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/18581/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/18581/swea_18581.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1868/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1868/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1868/swea_1868.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1949/old_swea_1949.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1949/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1949/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1949/swea_1949.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1953/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1953/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/1953/swea_1953.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2117/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2117/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2117/swea_2117.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2382/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2382/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2382/swea_2382.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2817/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2817/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2819/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2819/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/2819/swea_2819.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/3289/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/3289/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/3289/swea_3289.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4008/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4008/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4008/swea_4008.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4013/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4013/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4013/swea_4013.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4123/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4123/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4123/swea_4123.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4871/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4871/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/4871/swea_4871.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5174/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5174/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5174/swea_5174.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5178/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5178/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5178/swea_5178.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5215/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5215/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5215/swea_5215.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5249/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5249/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/5249/swea_5249.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/7465/sample_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/7465/sample_output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/7465/swea_7465.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/swea/9480/sample_input.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/swea/9480/sample_output.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/swea/9480/swea_9480.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boj/17281/boj_17281.py" beforeDir="false" afterPath="$PROJECT_DIR$/boj/17281/boj_17281.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boj/17281/sample_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/boj/17281/sample_input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/low_level_implement.py" beforeDir="false" afterPath="$PROJECT_DIR$/low_level_implement.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/2817/swea_2817.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/2817/swea_2817.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/4014/swea_4014.py" beforeDir="false" afterPath="$PROJECT_DIR$/swea/4014/swea_4014.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +134,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/swea/1226" />
-    <property name="restartRequiresConfirmation" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "Merging main"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\SSAFY\Desktop\Algorithm-Practics\swea\1226" />
@@ -65,6 +156,7 @@
   <component name="RunManager" selected="Python.swea_9480">
     <configuration name="boj_10159" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="algorithms" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -87,6 +179,7 @@
     </configuration>
     <configuration name="swea_1226_bfs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -108,6 +201,7 @@
     </configuration>
     <configuration name="swea_1249" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -129,6 +223,7 @@
     </configuration>
     <configuration name="swea_2817" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -150,6 +245,7 @@
     </configuration>
     <configuration name="swea_5249" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -171,6 +267,7 @@
     </configuration>
     <configuration name="swea_9480" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Algorithm-Practics" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -236,7 +333,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
