@@ -13,14 +13,15 @@
 
 [입력]
 0. TC
-1. ingredient_num, max_calorie
-2. ingredient_score, ingredient_calorie
+1. i_num, c_max
+2. i_score, i_cal
+i_info - dict
 
 [출력]
 1. 주어진 제한 칼로리 이하의 조합 중 가장 점수가 높은 조합의 점수
 
 [알고리즘]
-1. dfs
+1. dfs 선택 비선택 분기
 2. 
 3. 
 
@@ -28,42 +29,38 @@
 - 시간: O()
 - 공간: O()
 """
+def dfs(c_idx, c_cal, c_score):
+    global i_num, c_max, high_score
 
-
-def dfs(index, c_sum, s_sum):
-    global result
-
-    if c_sum > max_c:
+    if c_idx == i_num:
+        if c_cal <= c_max:
+            high_score = max(high_score, c_score)
         return
 
-    if index == i_num:
-        result = max(s_sum, result)
-        return
-
-    dfs(index+1, c_sum+i_info[index][0], s_sum+i_info[index][1])
-
-    dfs(index+1, c_sum, s_sum)
+    key = key_list[c_idx]
+    value = item_list[c_idx]
+    dfs(c_idx+1, c_cal + value, c_score + key) # 선택
+    dfs(c_idx+1, c_cal, c_score) # 미선택
 
 
-from collections import defaultdict
-
-# T = int(sys.stdin.readline().strip())
+# T = int(sys.stdin.readline())
 T = int(input())
 
-for test_case in range(1, T + 1):
-    # 입력
-    # i_num, max_c = map(int, sys.stdin.readline().strip().split())
-    i_num, max_c = map(int, input().split())
+for tc in range(1, T + 1):
 
-    i_info = defaultdict(list)
+    # i_num, c_max = map(int, sys.stdin.readline().strip().split())
+    i_num, c_max = map(int, input().split())
 
+    key_list = [0] * i_num
+    item_list = [0] * i_num
     for idx in range(i_num):
-        # i_score, i_calorie = map(int, sys.stdin.readline().strip().split())
-        i_score, i_calorie = map(int, input().split())
-        i_info[idx].extend([i_calorie, i_score])
+        # i_score, i_cal = map(int, sys.stdin.readline().strip().split())
+        i_score, i_cal = map(int, input().split())
+        key_list[idx] = i_score
+        item_list[idx] = i_cal
 
-    result = 0
+    high_score = float("-inf")
+
     dfs(0, 0, 0)
-    
-    # 출력 (SWEA 형식)
-    print(f"#{test_case} {result}")
+
+    print(f"#{tc} {high_score}")
