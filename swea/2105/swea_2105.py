@@ -1,10 +1,10 @@
 # SWEA 2105 문제 풀이
-import sys
-from pathlib import Path
-
-# 로컬 테스트용 파일 입력 설정
-BASE_DIR = Path(__file__).resolve().parent
-sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
+# import sys
+# from pathlib import Path
+#
+# # 로컬 테스트용 파일 입력 설정
+# BASE_DIR = Path(__file__).resolve().parent
+# sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
 
 """
 [문제 설명]
@@ -40,46 +40,39 @@ sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
 """
 
 
-def dfs(c_row, c_col, e_row, e_col, move, c_way, c_dessert):
+def dfs(c_row, c_col, move, c_way):
     global map_size, max_dessert
 
-    if c_way == 4:
-        if (c_row, c_col) == (e_row, e_col):
+    d_row, d_col = d_list[c_way]
+    n_row, n_col = c_row + d_row, c_col + d_col
+
+    if 0 <= n_row < map_size and 0 <= n_col < map_size:
+        if c_way == 3 and (n_row, n_col) == start_idx:
             max_dessert = max(max_dessert, move)
-        return
-
-    if map_info[c_row][c_col] in c_dessert: # 이미 내부에 동일 디저트 존재 시 return
-        return
-
-    c_dessert.add(map_info[c_row][c_col])
-
-    d_r, d_c = d_list[c_way]
-    d_r_rt, d_c_rt = d_list[(c_way+1) % 4]
-    n_r, n_c, n_r_rt, n_c_rt = c_row + d_r, c_col + d_c, c_row + d_r_rt, c_col + d_c_rt
-    if 0 <= n_r < map_size and 0 <= n_c < map_size: # 직진 가능
-
-        dfs(n_r, n_c, e_row, e_col, move+1, c_way, c_dessert)
-
-    if 0 <= n_r_rt < map_size and 0 <= n_c_rt < map_size:  # 회전 가능
-
-        dfs(n_r_rt, n_c_rt, e_row, e_col, move + 1, c_way+1, c_dessert)
-
-    c_dessert.remove(map_info[c_row][c_col])
+            return
+        if not visited[map_info[n_row][n_col]]:
+            visited[map_info[n_row][n_col]] = True
+            dfs(n_row, n_col, move+1, c_way)
+            if c_way < 3:
+                dfs(n_row, n_col, move+1, c_way+1)
+            visited[map_info[n_row][n_col]] = False
 
 
 d_list = [(1, 1), (1, -1), (-1, -1), (-1, 1)] # 0: 우하, 1: 좌하, 2: 좌상, 3: 우상
-T = int(sys.stdin.readline())
-# T = int(input())
+
+T = int(input())
 
 for test_case in range(1, T + 1):
-    map_size = int(sys.stdin.readline())
-    # map_size = int(input())
-    map_info = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(map_size)]
-    # map_info = [list(map(int, input().split())) for _ in range(map_size)]
+    map_size = int(input())
+    map_info = [list(map(int, input().split())) for _ in range(map_size)]
 
     max_dessert = -1
+
     for row in range(map_size-2):
         for col in range(1, map_size-1):
-            dfs(row, col, row, col, 0, 0, set())
+            visited = [False] * 101
+            start_idx = (row, col)
+            visited[map_info[row][col]] = True
+            dfs(row, col, 1, 0)
     
     print(f"#{test_case} {max_dessert}")
