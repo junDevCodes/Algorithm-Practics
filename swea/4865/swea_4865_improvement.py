@@ -1,5 +1,6 @@
 # 4865. [파이썬 S/W 문제해결 기본] 1일차 - 글자수 세기
 import sys
+from collections import Counter
 sys.stdin = open("sample_input.txt")
 
 T = int(input())
@@ -8,9 +9,12 @@ for test_case in range(1, T + 1):
     string1 = input()
     string2 = input()
 
-    word_dict = {}
+    freq_map = Counter(string2) # 글자의 빈도수를 hash map 형태로 미리 생성
 
-    for char in sorted(set(string1)):
-        word_dict[char] = string2.count(char)
+    max_count = 0
 
-    print(f'#{test_case} {max(word_dict.values())}')  # Assuming test_case is always 1 as per the original code
+    for char in set(string1):
+        count = freq_map.get(char, 0) #
+        max_count = max(max_count, count)
+
+    print(f'#{test_case} {max_count}')
