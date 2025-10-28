@@ -34,6 +34,7 @@ drop 함수 구현
 
 from collections import deque
 
+
 def check_block(board):
     return sum(1 for row in board for cell in row if cell > 0)
 
@@ -117,7 +118,6 @@ def dfs(board, ball_left):
         temp_board = copy_board(board)
         bfs(temp_board, r, c)
         drop(temp_board)
-
         dfs(temp_board, ball_left-1)
 
 
