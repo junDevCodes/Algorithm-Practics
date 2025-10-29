@@ -1,10 +1,10 @@
 # SWEA 5653 문제 풀이
-# import sys
-# from pathlib import Path
-#
-# # 로컬 테스트용 파일 입력 설정
-# BASE_DIR = Path(__file__).resolve().parent
-# sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
+import sys
+from pathlib import Path
+
+# 로컬 테스트용 파일 입력 설정
+BASE_DIR = Path(__file__).resolve().parent
+sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
 
 """
 [문제 설명]
@@ -41,7 +41,7 @@ X시간동안 비활성화
 from collections import defaultdict
 
 
-def cell_simulation(board, cell_list, end_time):
+def cell_simulation(cell_list, end_time):
     d_list = [(1, 0), (0, 1), (-1, 0), (0, -1)]
     dead = set()
 
@@ -49,8 +49,8 @@ def cell_simulation(board, cell_list, end_time):
         new_cell = defaultdict(list)
         die = set()
 
-        for key, [inact, act, life] in cell_list.items():
-            # print(key, inact, act, life)
+        for key, value in list(cell_list.items()):
+            inact, act, life = value
 
             if inact > 0:
                 cell_list[key][0] -= 1
@@ -106,7 +106,7 @@ def solve():
                     cell_list[(row, col)] = [board[row][col], board[row][col], board[row][col]]
                     #비활성 시간 타이머, 활성 시간 타이머, 생명값
 
-        result = cell_simulation(board, cell_list, K)
+        result = cell_simulation(cell_list, K)
 
         print(f"#{test_case} {result}")
 
