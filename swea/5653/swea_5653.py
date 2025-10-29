@@ -1,10 +1,10 @@
 # SWEA 5653 문제 풀이
-import sys
-from pathlib import Path
-
-# 로컬 테스트용 파일 입력 설정
-BASE_DIR = Path(__file__).resolve().parent
-sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
+# import sys
+# from pathlib import Path
+#
+# # 로컬 테스트용 파일 입력 설정
+# BASE_DIR = Path(__file__).resolve().parent
+# sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
 
 """
 [문제 설명]
@@ -38,48 +38,55 @@ X시간동안 비활성화
 - 시간: O()
 - 공간: O()
 """
-from collections import defaultdict, deque
+from collections import defaultdict
 
 
-def bfs(board, cell_list, max_time):
-    d_list = [(0, 1), (1, 0), (-1, 0), (0, -1)]
-    queue = deque([*cell_list.keys()])
-    queue.append("reps")
-    cur_time = 1
+def cell_simulation(board, cell_list, end_time):
+    d_list = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+    dead = set()
 
-    while queue:
-        key = queue.popleft()
-        if key == "reps":
-            queue.append("reps")
-            cur_time += 1
-            continue
+    for _ in range(end_time):
+        new_cell = defaultdict(list)
+        die = set()
 
-        active_time, status, cell_time = cell_list[key]
+        for key, [inact, act, life] in cell_list.items():
+            # print(key, inact, act, life)
 
-        if cur_time > max_time: # 현재 시간이 타겟 시간인 경우
-            break
+            if inact > 0:
+                cell_list[key][0] -= 1
+                continue
 
-        if active_time == cell_time: # 활성, 비활성 시간에 도달한 경우
-            status = (status + 1) % 3 # 상태 변경 비활성 -> 활성 -> 사망
-            cell_list[key] = [active_time, status, 1] # 셀 업데이트
+            if inact == 0:
+                r, c = key
+                for dr, dc in d_list:
+                    n_key = (r + dr, c + dc)
 
-        if status == 0: continue # 셀이 사망인 경우 다음 셀로
-        elif status == 2 and cell_time == 1: # 셀이 활성이고 첫 타임인 경우
-            cr, cc = key
+                    if n_key in cell_list or n_key in dead: continue
 
-            for dr, dc in d_list:
-                nr, nc = cr + dr, cc + dc # 델타탐색 다음 좌표 계산
+                    if n_key in new_cell:
+                        if new_cell[n_key][2] < life:
+                            new_cell[n_key] = [life, life, life]
+                    else:
+                        new_cell[n_key] = [life, life, life]
+                cell_list[key][0] = -1
+                cell_list[key][1] -= 1
+            else:
+                cell_list[key][1] -= 1
 
-                if (nr, nc) in cell_list: continue # 이미 셀이 존재하면 생성하지 않는다
+            if cell_list[key][1] == 0:
+                die.add(key)
 
-                cell_list[(nr, nc)] = [active_time, 1, 1] # 부모 시간 따라가고, 비활성, 첫타임
-                queue.append((nr, nc)) # queue에 추가
-        else:
-            cell_list[key] = [active_time, status, cell_time + 1] # 비활성 or 활성 이후 시간 지남 -? 시간만 추가
+        for d_cell in die:
+            dead.add(d_cell)
+            del cell_list[d_cell]
 
-        queue.append(key)
+        for n_key, val in new_cell.items():
+            if n_key not in dead:
+                cell_list[n_key] = val
 
-    return len(queue)
+                act -= 1
+
+    return len(cell_list)
 
 
 def solve():
@@ -96,9 +103,10 @@ def solve():
 
             for col in range(M):
                 if board[row][col] > 0:
-                    cell_list[(row, col)] = [board[row][col], 1, 1]
+                    cell_list[(row, col)] = [board[row][col], board[row][col], board[row][col]]
+                    #비활성 시간 타이머, 활성 시간 타이머, 생명값
 
-        result = bfs(board, cell_list, K)
+        result = cell_simulation(board, cell_list, K)
 
         print(f"#{test_case} {result}")
 
