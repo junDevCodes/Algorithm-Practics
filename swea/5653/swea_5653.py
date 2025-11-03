@@ -43,43 +43,42 @@ from collections import defaultdict, deque
 
 def bfs(board, cell_list, max_time):
     d_list = [(0, 1), (1, 0), (-1, 0), (0, -1)]
+    N = len(board)
+    M = len(board[0])
+
     queue = deque([*cell_list.keys()])
-    queue.append("reps")
     cur_time = 1
 
-    while queue:
-        key = queue.popleft()
-        if key == "reps":
-            queue.append("reps")
-            cur_time += 1
-            continue
+    while cur_time <= max_time: # 현재 시간이 타겟 시간인 경우
+        to_add = {}
 
-        active_time, status, cell_time = cell_list[key]
+        while queue:
+            key = queue.popleft()
+            active_time, status, cell_time = cell_list[key]
+            r, c = key
 
-        if cur_time > max_time: # 현재 시간이 타겟 시간인 경우
-            break
+            if active_time == cell_time: # 활성, 비활성 시간에 도달한 경우
+                status = (status + 1) % 3 # 상태 변경 비활성 -> 활성 -> 사망
+                cell_list[key] = [active_time, status, 1] # 셀 업데이트
+                continue
 
-        if active_time == cell_time: # 활성, 비활성 시간에 도달한 경우
-            status = (status + 1) % 3 # 상태 변경 비활성 -> 활성 -> 사망
-            cell_list[key] = [active_time, status, 1] # 셀 업데이트
+            if status == 0: continue
 
-        if status == 0: continue # 셀이 사망인 경우 다음 셀로
-        elif status == 2 and cell_time == 1: # 셀이 활성이고 첫 타임인 경우
-            cr, cc = key
+            if status == 2 and cell_time == 1:
+                for dr, dc in d_list:
+                    nr, nc = r + dr, c + dc
 
-            for dr, dc in d_list:
-                nr, nc = cr + dr, cc + dc # 델타탐색 다음 좌표 계산
+                    if nr < 0 or nc < 0 or nr >= N or nc >= M: continue
+                    to_add[(r, c)] = max(to_add.get((nr, nc), 0), active_time)
 
-                if (nr, nc) in cell_list: continue # 이미 셀이 존재하면 생성하지 않는다
+            cell_list[key][2] += 1
 
-                cell_list[(nr, nc)] = [active_time, 1, 1] # 부모 시간 따라가고, 비활성, 첫타임
-                queue.append((nr, nc)) # queue에 추가
-        else:
-            cell_list[key] = [active_time, status, cell_time + 1] # 비활성 or 활성 이후 시간 지남 -? 시간만 추가
+        for add_key, add_value in to_add.items():
+            cell_list[add_key] = cell_list.get(add_key, [add_value, 1, 1])
+        cur_time += 1
 
-        queue.append(key)
-
-    return len(queue)
+    print(cell_list)
+    return 1
 
 
 def solve():
