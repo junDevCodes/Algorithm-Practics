@@ -38,9 +38,10 @@ X시간동안 비활성화
 - 시간: O()
 - 공간: O()
 """
-from collections import defaultdict, deque
+from collections import defaultdict
 
 
+<<<<<<< HEAD
 def bfs(board, cell_list, max_time):
     d_list = [(0, 1), (1, 0), (-1, 0), (0, -1)]
     N = len(board)
@@ -79,6 +80,54 @@ def bfs(board, cell_list, max_time):
 
     print(cell_list)
     return 1
+=======
+def cell_simulation(cell_list, end_time):
+    d_list = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+    dead = set()
+
+    for _ in range(end_time):
+        new_cell = defaultdict(list)
+        die = set()
+
+        for key, value in list(cell_list.items()):
+            inact, act, life = value
+
+            if inact > 0:
+                cell_list[key][0] -= 1
+                continue
+
+            if inact == 0:
+                r, c = key
+                for dr, dc in d_list:
+                    n_key = (r + dr, c + dc)
+
+                    if n_key in cell_list or n_key in dead: continue
+
+                    if n_key in new_cell:
+                        if new_cell[n_key][2] < life:
+                            new_cell[n_key] = [life, life, life]
+                    else:
+                        new_cell[n_key] = [life, life, life]
+                cell_list[key][0] = -1
+                cell_list[key][1] -= 1
+            else:
+                cell_list[key][1] -= 1
+
+            if cell_list[key][1] == 0:
+                die.add(key)
+
+        for d_cell in die:
+            dead.add(d_cell)
+            del cell_list[d_cell]
+
+        for n_key, val in new_cell.items():
+            if n_key not in dead:
+                cell_list[n_key] = val
+
+                act -= 1
+
+    return len(cell_list)
+>>>>>>> ca29d6b6dc1899471413107467559e5126a67021
 
 
 def solve():
@@ -95,9 +144,10 @@ def solve():
 
             for col in range(M):
                 if board[row][col] > 0:
-                    cell_list[(row, col)] = [board[row][col], 1, 1]
+                    cell_list[(row, col)] = [board[row][col], board[row][col], board[row][col]]
+                    #비활성 시간 타이머, 활성 시간 타이머, 생명값
 
-        result = bfs(board, cell_list, K)
+        result = cell_simulation(cell_list, K)
 
         print(f"#{test_case} {result}")
 
