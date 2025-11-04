@@ -43,6 +43,7 @@ N x N 크기의 핀볼 게임판
 - 시간: O()
 - 공간: O()
 """
+<<<<<<< HEAD
 max_score = 0
 # 0: 상, 1: 하, 2: 좌, 3: 우
 d_way = {0: (-1, 0),
@@ -81,6 +82,87 @@ def solve():
                         ball_simulation(board, way, (r, c), (nr, nc))
 
         print(f"#{test_case} {max_score}")
+=======
+# 0: 상, 1: 하, 2: 좌, 3: 우
+d_list = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+block_reflect = {
+    1: {0: 1, 1: 3, 2: 0, 3: 2},
+    2: {0: 3, 1: 0, 2: 1, 3: 2},
+    3: {0: 2, 1: 0, 2: 3, 3: 1},
+    4: {0: 1, 1: 2, 2: 3, 3: 0},
+    5: {0: 1, 1: 0, 2: 3, 3: 2}
+}
+max_value = 0
+wormhole = {}
+
+
+def ball_simulation(board, start_way, start_coord):
+    global max_value, block_reflect, d_list, wormhole
+
+    N = len(board)
+    c_count = 0
+    c_way = start_way
+    cr, cc = start_coord
+
+    while True:
+        dr, dc = d_list[c_way]
+        nr, nc = cr + dr, cc + dc
+
+        if nr < 0 or nc < 0 or nr >= N or nc >= N:
+            c_way = block_reflect[5][c_way]
+            c_count += 1
+            dr, dc = d_list[c_way]
+            nr, nc = nr + dr, nc + dc
+
+        cr, cc = nr, nc
+
+        if (cr, cc) == start_coord or board[cr][cc] == -1:
+            max_value = max(max_value, c_count)
+            return
+
+        if board[cr][cc] == 0: continue
+
+        if board[cr][cc] > 5:
+            cr, cc = wormhole[(cr, cc)]
+            continue
+
+        c_way = block_reflect[board[cr][cc]][c_way]
+        c_count += 1
+
+
+def solve():
+    global max_value, d_list, wormhole
+
+    T = int(input())
+
+    for tc in range(1, T + 1):
+        N = int(input())
+        board = [list(map(int, input().split())) for _ in range(N)]
+
+        wormhole = {}
+        wormhole_check = [tuple()] * 11
+        max_value = 0
+
+        for r in range(N):
+            for c in range(N):
+                if board[r][c] > 5:
+                    w_val = board[r][c]
+                    if not wormhole_check[w_val]:
+                        wormhole_check[w_val] = (r, c)
+                        continue
+
+                    wormhole[(r, c)] = wormhole_check[w_val]
+                    wormhole[wormhole_check[w_val]] = (r, c)
+
+        for r in range(N):
+            for c in range(N):
+                if board[r][c] == 0:
+                    start_coord = (r, c)
+                    for way, dxy in enumerate(d_list):
+                        ball_simulation(board, way, start_coord)
+
+        print(f"#{tc} {max_value}")
+>>>>>>> afd27d6f726ba58c27b63fbddc6a0622a93bc9fc
 
 
 solve()

@@ -42,6 +42,7 @@ from collections import defaultdict
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def bfs(board, cell_list, max_time):
     d_list = [(0, 1), (1, 0), (-1, 0), (0, -1)]
     N = len(board)
@@ -81,6 +82,8 @@ def bfs(board, cell_list, max_time):
     print(cell_list)
     return 1
 =======
+=======
+>>>>>>> afd27d6f726ba58c27b63fbddc6a0622a93bc9fc
 def cell_simulation(cell_list, end_time):
     d_list = [(1, 0), (0, 1), (-1, 0), (0, -1)]
     dead = set()

@@ -113,6 +113,9 @@ sys.stdin = (BASE_DIR / 'sample_input.txt').open('r', encoding='utf-8')
 [문제 설명]
 
 
+[조건]
+
+
 [입력]
 
 
@@ -134,11 +137,16 @@ PYCODE
         case "$site_name" in
             swea)
                 cat >> "$file" <<'SWEA_CODE'
-T = int(input())
-
-for test_case in range(1, T + 1):
+def solve():
+    T = int(input())
     
-    print(f"#{test_case}")
+    for test_case in range(1, T + 1):
+        
+        print(f"#{test_case}")
+        
+
+solve()
+
 SWEA_CODE
 
             ;;
