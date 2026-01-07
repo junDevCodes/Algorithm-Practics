@@ -45,25 +45,25 @@ from itertools import combinations
 # for tc in range(1, T + 1):
 N, M = map(int, input().split())
 
-H_dict = list()
-C_dict = list()
+houses = list()
+chickens = list()
 
 for i in range(N):
     row = list(map(int, input().split()))  # 한 줄씩 입력받기
     for j in range(N):
         if row[j] == 1:
-            H_dict.append((i, j))
+            houses.append((i, j))
         elif row[j] == 2:
-            C_dict.append((i, j))
+            chickens.append((i, j))
 
 
-comb_list = list(combinations(C_dict, M))
+comb_list = list(combinations(chickens, M))
 
 min_dist = float("inf")
 
 for C_list in comb_list:
     temp_dist = 0
-    for Home in H_dict:
+    for Home in houses:
         home_x, home_y = Home
         home_dist = float("inf")
         for Chicken in C_list:
