@@ -15,7 +15,7 @@
 [로직]
 1. dfs_heavy, dfs_light로 분리
 2. 각각의 dfs를 돌며 자기 제외 노드 갯수 세기
-3. 전체 물건 수 - dfa_heavy + dfs_light
+3. 전체 물건 수 - dfs_heavy + dfs_light
 
 [예시 입력]
 6
