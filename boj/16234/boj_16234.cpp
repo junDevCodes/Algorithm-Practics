@@ -72,12 +72,10 @@ bool bfs(int x, int y)
 
 		return true;
 	}
-	else if(!is_changed)
+	else
 	{
 		return false;
 	}
-
-	return true;
 }
 
 int main()
@@ -115,7 +113,9 @@ int main()
 				if (visited[y][x]) continue;
 				visited[y][x] = true;
 				val_total = map[y][x];
-				is_changed = bfs(x, y);
+				if (bfs(x, y)) {
+					is_changed = true;
+				}
 			}
 		}
 	}
