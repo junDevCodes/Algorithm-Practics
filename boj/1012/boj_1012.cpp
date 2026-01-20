@@ -39,6 +39,7 @@ int main() {
 	cin.tie(NULL);
 
 	// ... 문제 풀이 로직 ...
+	
 	cin >> T;
 
 	for (int tc = 0; tc < T; tc++) {
